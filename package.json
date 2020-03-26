@@ -1,0 +1,26 @@
+{
+  "name": "parcelWithGithubActions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel <your entry file>",
+    "build": "parcel build src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WangShuXian6/parcelWithGithubActions.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WangShuXian6/parcelWithGithubActions/issues"
+  },
+  "homepage": "https://github.com/WangShuXian6/parcelWithGithubActions#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^3.8.3"
+  }
+}

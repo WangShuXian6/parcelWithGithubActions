@@ -1,0 +1,38 @@
+on:
+  push:
+    tags:
+      - v*
+
+env:
+  MY_V2_SERVER_PRIVATE_KEY: ${{ secrets.MY_V2_SERVER_PRIVATE_KEY }} # 服务器私钥
+  MY_V2_USER: ${{ secrets.MY_V2_USER }}
+  MY_V2_IP: ${{ secrets.MY_V2_IP }}
+
+jobs:
+  build-production:
+    name: Build 
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: npm i
+    - run: npm run build
+    - name: Upload result
+        uses: actions/upload-artifact@v1
+        with:
+          name: dist
+          path: dist
+  deploy:
+    name: Deploy
+    needs: build-production
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download result
+        uses: actions/download-artifact@v1
+        with:
+          name: dist
+    - name: rsync deployments
+      uses: contention/rsync-deployments@v1.0.0
+      env:
+        DEPLOY_KEY: ${{ secrets.MY_V2_SERVER_PRIVATE_KEY }}
+      with:
+        
